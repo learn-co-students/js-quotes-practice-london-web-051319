@@ -19,11 +19,6 @@ const setFormListener = () => {
 
 setFormListener();
 
-const getData = (id) => {
-   return fetch(`${QUOTES_URL}/${id}?_embed=likes`)
-   .then(data => data.json())
-}
-
 fetch(`${QUOTES_URL}?_embed=likes`)
 .then(data => data.json())
 .then(results => renderAllQuotes(results))
@@ -81,16 +76,6 @@ const newQuote = (content, author) => {
    .then(results => renderQuote(results))
 };
 
-const deleteQuote = (quote, button) => {
-   console.log(quote);
-   quoteItem = document.querySelector(`#list_item_${quote.id}`);
-   quoteItem.remove();
-
-   fetch(`${QUOTES_URL}/${quote.id}`, {method: 'DELETE'})
-   .then(data => data.json())
-   .then(console.log('Quote has been successfully deleted.'))
-};
-
 const likeQuote = (quote, button, footer) => {
    let time = Date.now();
    configOpt = {
@@ -103,15 +88,33 @@ const likeQuote = (quote, button, footer) => {
    }
    fetch(LIKES_URL, configOpt)
    .then(data => data.json())
-   .then(likeData => {
-      getData(quote.id)
-      .then(result => updateDom(result, footer))
-   })
+   .then(results => updateLikes(results, quote, footer))
+};
+// try to fetch the quote data in the .then statement.
+
+
+
+
+const updateLikes = (newLikeData, quote, footer) => {
+   fetch(LIKES_URL)
+   .then(data => data.json())
+   .then(results => updateLikesDom(results, quote, footer))
+};
+   
+const updateLikesDom = (results, quote, footer)  => {
+   quoteNumber = (quote.likes !== undefined ? quote.likes.length : 0 )
+   footer.innerText = `Likes received: ${quoteNumber + 1}`;
 };
 
-const updateDom = (newQuoteData, footer) => {
-   let newLikesNum = newQuoteData.likes.length;
-   footer.innerText = `Likes received: ${newLikesNum}`;
+const deleteQuote = (quote, button) => {
+   console.log(quote);
+   quoteItem = document.querySelector(`#list_item_${quote.id}`);
+   quoteItem.remove();
+
+   fetch(`${QUOTES_URL}/${quote.id}`, {method: 'DELETE'})
+   .then(data => data.json())
+   .then(console.log('Quote has been successfully deleted.'))
 };
+
 
 });
