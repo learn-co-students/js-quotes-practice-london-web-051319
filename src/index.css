@@ -1,3 +1,17 @@
 #quote-list {
   padding: 20px;
 }
+
+blockquote p {
+    padding: 15px;
+    background: #eee;
+    border-radius: 5px;
+}
+
+.like-btn {
+  float: left;
+}
+
+.btn.btn-danger {
+  float: right;
+}
