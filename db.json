@@ -228,6 +228,12 @@
       "quote": "Testing frontend",
       "likes": [],
       "id": 13
+    },
+    {
+      "author": "Christopher 'fluent in Korean' Dews",
+      "quote": "I love Djokovic",
+      "likes": [],
+      "id": 14
     }
   ],
   "likes": [
@@ -883,6 +889,122 @@
     {
       "quoteId": 12,
       "id": 163
+    },
+    {
+      "quoteId": 14,
+      "id": 164
+    },
+    {
+      "quoteId": 14,
+      "id": 165
+    },
+    {
+      "quoteId": 14,
+      "id": 166
+    },
+    {
+      "quoteId": 14,
+      "id": 167
+    },
+    {
+      "quoteId": 14,
+      "id": 168
+    },
+    {
+      "quoteId": 14,
+      "id": 169
+    },
+    {
+      "quoteId": 14,
+      "id": 170
+    },
+    {
+      "quoteId": 14,
+      "id": 171
+    },
+    {
+      "quoteId": 14,
+      "id": 172
+    },
+    {
+      "quoteId": 14,
+      "id": 173
+    },
+    {
+      "quoteId": 14,
+      "id": 174
+    },
+    {
+      "quoteId": 14,
+      "id": 175
+    },
+    {
+      "quoteId": 14,
+      "id": 176
+    },
+    {
+      "quoteId": 14,
+      "id": 177
+    },
+    {
+      "quoteId": 14,
+      "id": 178
+    },
+    {
+      "quoteId": 14,
+      "id": 179
+    },
+    {
+      "quoteId": 14,
+      "id": 180
+    },
+    {
+      "quoteId": 14,
+      "id": 181
+    },
+    {
+      "quoteId": 14,
+      "id": 182
+    },
+    {
+      "quoteId": 14,
+      "id": 183
+    },
+    {
+      "quoteId": 14,
+      "id": 184
+    },
+    {
+      "quoteId": 14,
+      "id": 185
+    },
+    {
+      "quoteId": 14,
+      "id": 186
+    },
+    {
+      "quoteId": 14,
+      "id": 187
+    },
+    {
+      "quoteId": 14,
+      "id": 188
+    },
+    {
+      "quoteId": 14,
+      "id": 189
+    },
+    {
+      "quoteId": 14,
+      "id": 190
+    },
+    {
+      "quoteId": 14,
+      "id": 191
+    },
+    {
+      "quoteId": 14,
+      "id": 192
     }
   ]
 }
