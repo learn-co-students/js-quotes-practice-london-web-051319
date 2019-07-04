@@ -8,7 +8,149 @@
     {
       "id": 2,
       "quote": "There are no secrets to success. It is the result of preparation, hard work, and learning from failure.",
-      "author": "Collin Powell"
+      "author": "Colin Powell",
+      "likes": [
+        {
+          "quoteId": 2,
+          "id": 2
+        },
+        {
+          "quoteId": 2,
+          "id": 14
+        },
+        {
+          "quoteId": 2,
+          "id": 15
+        },
+        {
+          "quoteId": 2,
+          "id": 16
+        },
+        {
+          "quoteId": 2,
+          "id": 20
+        },
+        {
+          "quoteId": 2,
+          "id": 24
+        },
+        {
+          "quoteId": 2,
+          "id": 29
+        },
+        {
+          "quoteId": 2,
+          "id": 30
+        },
+        {
+          "quoteId": 2,
+          "id": 31
+        },
+        {
+          "quoteId": 2,
+          "id": 32
+        },
+        {
+          "quoteId": 2,
+          "id": 33
+        },
+        {
+          "quoteId": 2,
+          "id": 34
+        },
+        {
+          "quoteId": 2,
+          "id": 35
+        },
+        {
+          "quoteId": 2,
+          "id": 36
+        },
+        {
+          "quoteId": 2,
+          "id": 58
+        },
+        {
+          "quoteId": 2,
+          "id": 78
+        },
+        {
+          "quoteId": 2,
+          "id": 79
+        },
+        {
+          "quoteId": 2,
+          "id": 80
+        },
+        {
+          "quoteId": 2,
+          "id": 81
+        },
+        {
+          "quoteId": 2,
+          "id": 82
+        },
+        {
+          "quoteId": 2,
+          "id": 83
+        },
+        {
+          "quoteId": 2,
+          "id": 84
+        },
+        {
+          "quoteId": 2,
+          "id": 85
+        },
+        {
+          "quoteId": 2,
+          "id": 86
+        },
+        {
+          "quoteId": 2,
+          "id": 147
+        },
+        {
+          "quoteId": 2,
+          "id": 148
+        },
+        {
+          "quoteId": 2,
+          "id": 149
+        },
+        {
+          "quoteId": 2,
+          "id": 150
+        },
+        {
+          "quoteId": 2,
+          "id": 151
+        },
+        {
+          "quoteId": 2,
+          "id": 152
+        },
+        {
+          "quoteId": 2,
+          "id": 153
+        },
+        {
+          "quoteId": 2,
+          "id": 154
+        },
+        {
+          "quoteId": 2,
+          "id": 155
+        },
+        {
+          "quoteId": 2,
+          "id": 156
+        },
+        {
+          "quoteId": 2,
+          "id": 157
+        }
+      ]
     },
     {
       "id": 3,
@@ -51,16 +193,41 @@
       "author": "Sonia Sotomayor"
     },
     {
-      "author": "This is a test",
-      "quote": "Me",
-      "likes": [],
-      "id": 11
+      "author": "Me",
+      "quote": "This is a testttttt",
+      "likes": [
+        {
+          "quoteId": 12,
+          "id": 158
+        },
+        {
+          "quoteId": 12,
+          "id": 159
+        },
+        {
+          "quoteId": 12,
+          "id": 160
+        },
+        {
+          "quoteId": 12,
+          "id": 161
+        },
+        {
+          "quoteId": 12,
+          "id": 162
+        },
+        {
+          "quoteId": 12,
+          "id": 163
+        }
+      ],
+      "id": 12
     },
     {
-      "author": "Me",
-      "quote": "This is also a test",
+      "author": "TESTTT",
+      "quote": "Testing frontend",
       "likes": [],
-      "id": 12
+      "id": 13
     }
   ],
   "likes": [
@@ -692,6 +859,30 @@
     {
       "quoteId": 2,
       "id": 157
+    },
+    {
+      "quoteId": 12,
+      "id": 158
+    },
+    {
+      "quoteId": 12,
+      "id": 159
+    },
+    {
+      "quoteId": 12,
+      "id": 160
+    },
+    {
+      "quoteId": 12,
+      "id": 161
+    },
+    {
+      "quoteId": 12,
+      "id": 162
+    },
+    {
+      "quoteId": 12,
+      "id": 163
     }
   ]
 }

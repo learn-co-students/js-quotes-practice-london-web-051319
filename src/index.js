@@ -68,7 +68,7 @@ function createQuoteCard (quoteObj) {
     e.preventDefault()
     quoteObj.author = e.target[1].value
     quoteObj.quote = e.target[0].value
-    updateQuoteBackend(quoteObj, p, footer)
+    updateQuoteBackend(quoteObj, e, footer)
   })
   li.append(editForm)
 
@@ -81,7 +81,7 @@ function createQuoteCard (quoteObj) {
   createEditFunctionality(editButton, editForm)
 }
 
-function updateQuoteBackend (quoteObj, p, footer) {
+function updateQuoteBackend (quoteObj, e) {
   return fetch(`http://localhost:3000/quotes/${quoteObj.id}`, {
     method: 'PATCH',
     headers: {
@@ -89,12 +89,13 @@ function updateQuoteBackend (quoteObj, p, footer) {
     },
     body: JSON.stringify(quoteObj)
   }).then(response => response.json())
-    .then(quoteObj => updateQuoteFrontend(quoteObj, p, footer))
+    .then(quoteObj => updateQuoteFrontend(quoteObj, e))
 }
 
-function updateQuoteFrontend (quoteObj, p, footer) {
-  p.innerText = quoteObj.quote
-  footer.innerText = quoteObj.author
+function updateQuoteFrontend (quoteObj, e) {
+  e.target.style.display = 'none'
+  e.target.parentNode.lastElementChild.firstElementChild.innerText = quoteObj.quote
+  e.target.parentNode.lastElementChild.children[1].innerText = quoteObj.author
 }
 
 function createLikeFunctionality (likeButton, quoteObj) {
@@ -128,6 +129,7 @@ function createDeleteFunctionality (deleteButton, quoteObj) {
 function createEditFunctionality (editButton, form) {
   let editForm = false
   editButton.addEventListener('click', () => {
+    editForm = (form.style.display === 'block')
     editForm = !editForm
     if (editForm === true) {
       form.style.display = 'block'
