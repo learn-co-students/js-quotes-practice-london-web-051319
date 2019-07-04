@@ -44,11 +44,7 @@ const renderQuotes = (quotesObj) => {
     list.append(block, btnContainer);
     listContainer.append(list);
 
-    deleteBtn.addEventListener('click', () => {
-        deleteQuote(quotesObj);
-        location.reload(true);
-    })
-
+    deleteFunc(quotesObj, deleteBtn);
     likeFunc(quotesObj, likeBtn);
 }
 
@@ -67,6 +63,14 @@ const createLike = (quoteId) => {
         headers: {
             'Content-Type': 'application/json'
         }
+    })
+}
+
+const deleteFunc = (quote, deleteBtn) => {
+    deleteBtn.addEventListener('click', () => {
+        deleteQuote(quote);
+        location.reload(true);
+        location.reload(true);
     })
 }
 
