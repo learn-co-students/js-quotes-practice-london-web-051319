@@ -46,13 +46,6 @@ function renderQuote(quoteData) {
   // event listeners
   likeBtn.addEventListener('click', (event) => {
     createLike(event, quoteData);
-
-    getQuotes()
-      .then(quotes => {
-        let quote = quotes.find(quote => quote.id === quoteData.id);
-        event.target.textContent = "";
-        event.target.innerHTML = `Likes: ${quote.likes.length + 1}`;
-      });
   });
 
   deleteBtn.addEventListener('click', (event) => {
@@ -89,7 +82,18 @@ function createLike(event, quoteData) {
     })
     })
     .then(res => res.json())
-    .then(res => res);
+    .then(res => {
+      updateLike(quoteData, event);
+    });
+}
+
+function updateLike(quoteData, event) {
+  fetch(`http://localhost:3000/quotes/${quoteData.id}?_embed=likes`)
+    .then(res => res.json())
+    .then(quote => {
+      event.target.textContent = "";
+      event.target.textContent = `Likes: ${quote.likes.length}`;
+    });
 }
 
 function deleteQuote(event, quoteData) {
