@@ -8,7 +8,7 @@ fetch(QUOTES_URL)
 
 function getQuote (id) {
   return fetch(`http://localhost:3000/quotes/${id}?_embed=likes`)
-  .then(response => response.json())
+    .then(response => response.json())
 }
 
 function sortQuotes (quoteArray) {
@@ -44,12 +44,57 @@ function createQuoteCard (quoteObj) {
   deleteButton.classList.add('btn-danger')
   deleteButton.innerText = 'Delete'
 
-  blockquote.append(p, footer, br, likeButton, deleteButton)
+  editButton = document.createElement('button')
+  editButton.classList.add('btn-info')
+  editButton.innerText = 'Edit'
+
+  // const form = createForm(quoteObj, p, footer)
+
+  editForm = document.createElement('form')
+  editForm.style.display = 'none'
+  editForm.innerHTML =
+  `<form id="new-quote-form">
+    <div class="form-group">
+    <label for="edit-quote">Edit Quote</label>
+    <input type="text" class="form-control" id="edited-quote" value="${quoteObj.quote}">
+    </div>
+    <div class="form-group">
+    <label for="Author">Author</label>
+    <input type="text" class="form-control" id="author" value="${quoteObj.author}">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>`
+  editForm.addEventListener('submit', e => {
+    e.preventDefault()
+    quoteObj.author = e.target[1].value
+    quoteObj.quote = e.target[0].value
+    updateQuoteBackend(quoteObj, p, footer)
+  })
+  li.append(editForm)
+
+  blockquote.append(p, footer, br, likeButton, editButton, deleteButton)
   li.append(blockquote)
   ul.append(li)
 
   createLikeFunctionality(likeButton, quoteObj)
   createDeleteFunctionality(deleteButton, quoteObj)
+  createEditFunctionality(editButton, editForm)
+}
+
+function updateQuoteBackend (quoteObj, p, footer) {
+  return fetch(`http://localhost:3000/quotes/${quoteObj.id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(quoteObj)
+  }).then(response => response.json())
+    .then(quoteObj => updateQuoteFrontend(quoteObj, p, footer))
+}
+
+function updateQuoteFrontend (quoteObj, p, footer) {
+  p.innerText = quoteObj.quote
+  footer.innerText = quoteObj.author
 }
 
 function createLikeFunctionality (likeButton, quoteObj) {
@@ -80,8 +125,19 @@ function createDeleteFunctionality (deleteButton, quoteObj) {
   )
 }
 
+function createEditFunctionality (editButton, form) {
+  let editForm = false
+  editButton.addEventListener('click', () => {
+    editForm = !editForm
+    if (editForm === true) {
+      form.style.display = 'block'
+    } else {
+      form.style.display = 'none'
+    }
+  })
+}
 function removeElementFromFrontEnd (deleteButton) {
-  deleteButton.parentNode.parentNode.remove();
+  deleteButton.parentNode.parentNode.remove()
 }
 
 function addLikeFrontEnd (likeButton, likeNumber) {
@@ -92,8 +148,8 @@ function addListenerToForm () {
   form = document.querySelector('#new-quote-form')
   form.addEventListener('submit', e => {
     e.preventDefault()
-    author = e.target[0].value
-    quote = e.target[1].value
+    author = e.target[1].value
+    quote = e.target[0].value
 
     addNewQuote(author, quote)
   })
@@ -119,3 +175,4 @@ function addQuoteToBackend (quoteObj) {
 }
 
 addListenerToForm()
+
