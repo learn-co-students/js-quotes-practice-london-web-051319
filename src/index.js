@@ -2,8 +2,14 @@ const QUOTES_URL = 'http://localhost:3000/quotes?_embed=likes'
 const LIKES_URL = 'http://localhost:3000/likes'
 
 fetch(QUOTES_URL)
-  .then(response => response.json())
+  .then(response => response.json(
+  ))
   .then(sortQuotes)
+
+function getQuote (id) {
+  return fetch(`http://localhost:3000/quotes/${id}?_embed=likes`)
+  .then(response => response.json())
+}
 
 function sortQuotes (quoteArray) {
   quoteArray.forEach(quote => {
@@ -55,8 +61,11 @@ function createLikeFunctionality (likeButton, quoteObj) {
       },
       body: JSON.stringify({ quoteId: quoteObj.id })
     }).then(response => response.json())
-      .then(likeObj => quoteObj.likes.push(likeObj))
-      .then(addLikeFrontEnd(e.target, quoteObj))
+      .then(likeObj => {
+        getQuote(quoteObj.id)
+          .then(quote => quote.likes.length)
+          .then(likeNumber => addLikeFrontEnd(likeButton, likeNumber))
+      })
   })
 }
 
@@ -75,9 +84,8 @@ function removeElementFromFrontEnd (deleteButton) {
   deleteButton.parentNode.parentNode.remove();
 }
 
-function addLikeFrontEnd (likeButton, quoteObj) {
-  newLikes = quoteObj.likes
-  likeButton.firstElementChild.innerText = newLikes.length
+function addLikeFrontEnd (likeButton, likeNumber) {
+  likeButton.firstElementChild.innerText = likeNumber
 }
 
 function addListenerToForm () {
