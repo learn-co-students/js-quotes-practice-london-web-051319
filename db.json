@@ -14,6 +14,12 @@
       "id": 10,
       "quote": "You know, failure hurts. Any kind of failure stings. If you live in the sting, you will undoubtedly fail. My way of getting past the sting is to say no, I’m just not going to let this get me down.",
       "author": "Sonia Sotomayor"
+    },
+    {
+      "quote": "Who are we? We find that we live on an insignificant planet of a humdrum star lost in a galaxy tucked away in some forgotten corner of a universe in which there are far more galaxies than people",
+      "author": "Carl Sagan",
+      "likes": [],
+      "id": 11
     }
   ],
   "likes": [
@@ -536,6 +542,22 @@
     {
       "quoteId": 7,
       "id": 130
+    },
+    {
+      "quoteId": 11,
+      "id": 131
+    },
+    {
+      "quoteId": 11,
+      "id": 132
+    },
+    {
+      "quoteId": 11,
+      "id": 133
+    },
+    {
+      "quoteId": 11,
+      "id": 134
     }
   ]
 }
