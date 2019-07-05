@@ -12,27 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
     sortFormButton()
 });
 
-function sortQuotes() {
-    fetch(BASE_URL)
-        .then(quotesData => quotesData.json())
-        .then(quotes => removeQuotes(quotes))
-};
-
-function removeQuotes(quotes) {
-    const div = document.querySelector("#quote-list")
-    div.innerHTML = " "
-    displaySortedQuotes(quotes)
-};
-
-function displaySortedQuotes(quotes) {
-    quotes.sort( (quoteOne, quoteTwo) => {
-        if(quoteOne.author < quoteTwo.author) { return -1; }
-        if(quoteOne.author > quoteTwo.author) { return 1; }
-        return 0;
-    })
-    displayQuotes(quotes)
-};
-
 function fetchQuotes() {
     fetch(BASE_URL)
         .then(quotesData => quotesData.json())
@@ -57,7 +36,7 @@ function createQuotes(quote) {
 
     const blockquote = document.createElement("blockquote")
     blockquote.className = "blockqoute"
-
+    
     const p = document.createElement("p")
     p.className = "mb-0"
     p.innerText = quote.quote
@@ -86,7 +65,7 @@ function createQuotes(quote) {
 
     const editButton = document.createElement("button")
     editButton.className = "btn-info"
-    editButton.innerText = "Edit Quote"
+    editButton.innerText = "Edit"
     editButton.id = quote.id
     editButton.addEventListener("click", event => editQuote(quote))
 
@@ -95,40 +74,6 @@ function createQuotes(quote) {
     li.appendChild(blockquote)
 
     return li
-};
-
-function editFormDiv() {
-    const container = document.querySelector(".container.center")
-
-    const editDiv = document.createElement("div")
-    editDiv.className = "edit-div"
-
-    container.appendChild(editDiv)
-};
-
-function sortFormButton() {
-    const container = document.querySelector(".container.center")
-
-    const br = document.createElement("br")
-
-    const addSort = document.createElement("button")
-    addSort.className = "btn btn-info"
-    addSort.innerText = "Sort Quotes"
-    container.append(br, addSort)
-
-    addSort.addEventListener("click", event => sortQuotes())
-};
-
-function editQuote(quote) {
-    const editDiv = document.querySelector(".edit-div")
-    editDiv.innerHTML = " "
-    createEditForm(quote)
-    captureEditButton()
-};
-
-function captureEditButton() {
-    const submitEdit = document.querySelector(".btn.btn-info")
-    submitEdit.addEventListener("click", event => updateDatabase())
 };
 
 function updateDatabase() {
@@ -147,6 +92,76 @@ function updateDatabase() {
           "Content-Type": "application/json"
         }
       }).then(quote => quote.json())
+};
+
+function deleteQuote(quote) {
+    fetch(`${"http://localhost:3000/quotes"}/${event.target.id}`, {
+        method: "DELETE"
+      }).then(response => response.json())
+};
+
+function removeQuotes(quotes, addSort) {
+    const div = document.querySelector("#quote-list")
+    div.innerHTML = " "
+    displaySortedQuotes(quotes, addSort)
+};
+
+function sortQuotes(addSort) {
+    fetch(BASE_URL)
+        .then(quotesData => quotesData.json())
+        .then(quotes => removeQuotes(quotes, addSort))
+};
+
+function displaySortedQuotes(quotes, addSort) {
+    if (addSort.value === "false"){
+        addSort.value = "true"
+        addSort.innerText = "Sort Quotes by Author's name"
+        displayQuotes(quotes)
+    } else {
+        quotes.sort( (quoteOne, quoteTwo) => {
+            if(quoteOne.author < quoteTwo.author) { return -1; }
+            if(quoteOne.author > quoteTwo.author) { return 1; }
+            return 0;
+        })
+        addSort.value = "false"
+        addSort.innerText = "Sort Quotes by order of creation"
+        displayQuotes(quotes)
+    }
+};
+
+function editFormDiv() {
+    const container = document.querySelector(".container.center")
+
+    const editDiv = document.createElement("div")
+    editDiv.className = "edit-div"
+
+    container.appendChild(editDiv)
+};
+
+function sortFormButton() {
+    const container = document.querySelector(".container.center")
+
+    const br = document.createElement("br")
+
+    let addSort = document.createElement("button")
+    addSort.className = "btn btn-info"
+    addSort.innerText = "Sort Quotes by Author's name"
+    addSort.value = "false"
+    container.append(br, addSort)
+
+    addSort.addEventListener("click", event => sortQuotes(addSort))
+};
+
+function editQuote(quote) {
+    const editDiv = document.querySelector(".edit-div")
+    editDiv.innerHTML = " "
+    createEditForm(quote)
+    captureEditButton()
+};
+
+function captureEditButton() {
+    const submitEdit = document.querySelector(".btn.btn-info")
+    submitEdit.addEventListener("click", event => updateDatabase())
 };
 
 function createEditForm(quote) {
@@ -186,7 +201,7 @@ function createEditForm(quote) {
 
     const editButton = document.createElement("button")
     editButton.className = "btn btn-info"
-    editButton.innerText = "Edit"
+    editButton.innerText = "Edit Quote"
     editButton.id = quote.id
 
     form.append(divQuote, divAuthor, editButton)
@@ -205,12 +220,6 @@ function increaseLikes(quote) {
         }
       }).then(quote => quote.json());
 
-};
-
-function deleteQuote(quote) {
-    fetch(`${"http://localhost:3000/quotes"}/${event.target.id}`, {
-        method: "DELETE"
-      }).then(response => response.json())
 };
 
 function newQuoteCapture() {
