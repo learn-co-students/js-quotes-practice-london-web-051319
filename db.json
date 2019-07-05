@@ -94,6 +94,16 @@
       "quoteId": 11,
       "createdAt": 1562256362440,
       "id": 7
+    },
+    {
+      "quoteId": 12,
+      "createdAt": 1562314840698,
+      "id": 8
+    },
+    {
+      "quoteId": 12,
+      "createdAt": 1562314844664,
+      "id": 9
     }
   ]
 }

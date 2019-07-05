@@ -95,6 +95,7 @@ function updateDatabase() {
 };
 
 function deleteQuote(quote) {
+    event.preventDefault();
     fetch(`${"http://localhost:3000/quotes"}/${event.target.id}`, {
         method: "DELETE"
       }).then(response => response.json())
@@ -153,6 +154,7 @@ function sortFormButton() {
 };
 
 function editQuote(quote) {
+    event.preventDefault();
     const editDiv = document.querySelector(".edit-div")
     editDiv.innerHTML = " "
     createEditForm(quote)
@@ -209,6 +211,7 @@ function createEditForm(quote) {
 };
 
 function increaseLikes(quote) {
+    event.preventDefault();
     return fetch("http://localhost:3000/likes", {
         method: "POST",
         body: JSON.stringify({
